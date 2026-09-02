@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Signal / Phishing Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div class="status"><span class="status-dot"></span><span id="api-status">API CONNECTING</span></div>
+      </header>
+
+      <main>
+        <section class="project-heading">
+          <h1>Phishing Website Detection</h1>
+        </section>
+
+        <section class="check-layout">
+          <form id="check-form" class="check-panel">
+            <div class="panel-head"><span class="panel-index">01</span><h2>Inspect a URL</h2><span class="panel-line"></span></div>
+            <label for="url">TARGET URL</label>
+            <div class="url-field"><span class="field-prefix">https://</span><input id="url" name="url" type="text" placeholder="example.com/login" autocomplete="url" required /></div>
+            <label for="html">PAGE SOURCE <span class="optional">OPTIONAL</span></label>
+            <textarea id="html" name="html" rows="4" placeholder="Paste HTML for a deeper content scan..."></textarea>
+            <button type="submit" class="scan-button"><span>CHECK</span><span class="arrow">↗</span></button>
+            <p id="form-message" class="form-message" role="status"></p>
+          </form>
+
+          <section class="result-panel" aria-live="polite">
+            <div class="panel-head"><span class="panel-index">02</span><h2>Assessment</h2><span class="panel-line"></span></div>
+            <div id="result-empty" class="result-empty"><span class="crosshair">+</span><p>Awaiting a target</p><small>Assessment output will appear here.</small></div>
+            <div id="result-content" class="result-content hidden">
+              <div class="result-top"><div><p class="result-kicker">CLASSIFICATION</p><h3 id="prediction">LEGITIMATE</h3></div><div class="score-ring"><span id="probability">0%</span><small>RISK</small></div></div>
+              <div class="confidence-track"><span id="confidence-fill"></span></div>
+              <div class="result-meta"><span>CONFIDENCE</span><strong id="confidence">0%</strong></div>
+              <p id="result-url" class="result-url"></p>
+            </div>
+          </section>
+        </section>
+
+        <section class="lower-grid">
+          <section class="feature-panel">
+            <div class="panel-head"><span class="panel-index">03</span><h2>Feature breakdown</h2><span class="panel-line"></span></div>
+            <div id="feature-list" class="feature-list"><p class="muted">Run an assessment to inspect the signal profile.</p></div>
+          </section>
+          <section class="metrics-panel">
+            <div class="panel-head"><span class="panel-index">04</span><h2>Model performance</h2><span class="panel-line"></span></div>
+            <div class="metric-grid">
+              <div class="metric"><span>ACCURACY</span><strong id="metric-accuracy">--</strong></div>
+              <div class="metric"><span>PRECISION</span><strong id="metric-precision">--</strong></div>
+              <div class="metric"><span>RECALL</span><strong id="metric-recall">--</strong></div>
+              <div class="metric"><span>F1 SCORE</span><strong id="metric-f1">--</strong></div>
+              <div class="metric wide"><span>ROC-AUC</span><strong id="metric-roc">--</strong></div>
+            </div>
+            <div class="matrix"><p>CONFUSION MATRIX</p><div class="matrix-grid"><span></span><span>LEGIT</span><span>PHISH</span><b>LEGIT</b><strong id="matrix-tl">--</strong><strong id="matrix-tr">--</strong><b>PHISH</b><strong id="matrix-bl">--</strong><strong id="matrix-br">--</strong></div></div>
+          </section>
+        </section>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
